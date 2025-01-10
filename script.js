@@ -40,6 +40,10 @@ function showWord() {
       // Display the word
       document.getElementById("word").textContent = selectedWord;
 
+      // Set the password text content
+      const passwordElement = document.querySelector('.password');
+      passwordElement.textContent = "12345678";
+
       // Add the word to shownWords
       shownWords.push(selectedWord);
 
