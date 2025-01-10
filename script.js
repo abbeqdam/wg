@@ -1,11 +1,23 @@
 let shownWords = [];
 
-// Load shown words from JSON file
+// Load shown words from JSON file (Corrected)
 fetch('shown_words.json')
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      // If the file doesn't exist, start with an empty array
+      return []; 
+    }
+    return response.json();
+  })
   .then(data => {
     shownWords = data;
+    getRandomWord(); // Call getRandomWord after loading shownWords
+  })
+  .catch(error => {
+    console.error('Error loading shown words:', error);
+    getRandomWord(); // Call getRandomWord even if there's an error
   });
+
 
 function getRandomWord() {
   // Fetch words from XML file
@@ -58,6 +70,3 @@ function copyWord() {
   const word = document.getElementById("word").textContent;
   navigator.clipboard.writeText(word);
 }
-
-// Load a random word when the page loads
-getRandomWord();
