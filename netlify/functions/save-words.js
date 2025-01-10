@@ -1,8 +1,9 @@
 const fs = require('fs');
 
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
   try {
-    const { shownWords } = JSON.parse(event.body);
+    const {shownWords} = JSON.parse(event.body);
+    console.log('Received shownWords:', shownWords); // Add this line
 
     // Update the shown_words.json file
     const data = JSON.stringify(shownWords);
@@ -10,12 +11,13 @@ exports.handler = async function(event, context) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Shown words saved successfully' }),
+      body: JSON.stringify({message: 'Shown words saved successfully'}),
     };
   } catch (error) {
+    console.error('Error in function:', error); // Add this line
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to save shown words' }),
+      body: JSON.stringify({error: 'Failed to save shown words'}),
     };
   }
 };
