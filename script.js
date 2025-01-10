@@ -1,19 +1,15 @@
-let shownWords = [];
+let shownWords =;
 
-// Load shown words from JSONbin.io
-fetch(`https://api.jsonbin.io/v3/b/678134ccacd3cb34a8c984d4/latest`, { // Your new bin ID
-  headers: {
-    'X-Master-Key': API_KEY, // Your API key (from Netlify environment variables)
-  },
-})
+// Load shown words from the proxy function
+fetch('/.netlify/functions/get-shown-words')
   .then(response => {
     if (!response.ok) {
-      throw new Error(`JSONbin.io request failed with status ${response.status}`);
+      throw new Error(`Proxy request failed with status ${response.status}`);
     }
     return response.json();
   })
   .then(data => {
-    shownWords = data.record.words || [];
+    shownWords = data.record.words ||;
   })
   .catch(error => {
     console.error('Error loading shown words:', error);
@@ -46,7 +42,7 @@ function showWord() {
 
       // Set the password text content
       const passwordElement = document.querySelector('.password');
-      passwordElement.textContent = "12345678";
+      passwordElement.textContent = "";
 
       // Add the word to shownWords
       shownWords.push(selectedWord);

@@ -1,6 +1,6 @@
-const fs = require('fs');
+const fetch = require('node-fetch'); // Import node-fetch for server-side
 
-const API_KEY = '$2a$10$w4f4jzXPp/NZPHWxhAv9z.3hKj1vP1IUAwDODZK0./hdMGNV.ybwe'; // Your JSONbin.io API key
+const API_KEY = process.env.JSONBIN_API_KEY; // Your JSONbin.io API key (from Netlify environment variables)
 const BIN_ID = '678134ccacd3cb34a8c984d4'; // Your bin ID
 
 exports.handler = async function (event, context) {
