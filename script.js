@@ -1,15 +1,19 @@
 let shownWords = [];
 
-// Load shown words from JSON file
-fetch('shown_words.json')
+// Load shown words from JSONbin.io
+fetch(`https://api.jsonbin.io/v3/b/678132fce41b4d34e4754804/latest`, { // Your bin ID
+  headers: {
+    'X-Master-Key': '$2a$10$w4f4jzXPp/NZPHWxhAv9z.3hKj1vP1IUAwDODZK0./hdMGNV.ybwe', // Your API key
+  },
+})
   .then(response => {
     if (!response.ok) {
-      return [];
+      throw new Error(`JSONbin.io request failed with status ${response.status}`);
     }
     return response.json();
   })
   .then(data => {
-    shownWords = data;
+    shownWords = data.record.words || [];
   })
   .catch(error => {
     console.error('Error loading shown words:', error);
@@ -42,7 +46,7 @@ function showWord() {
 
       // Set the password text content
       const passwordElement = document.querySelector('.password');
-      passwordElement.textContent = "";
+      passwordElement.textContent = "12345678";
 
       // Add the word to shownWords
       shownWords.push(selectedWord);
