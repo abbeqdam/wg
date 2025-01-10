@@ -16,6 +16,10 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
   }
+  #word-container p { /* Style the <p> tag within #word-container */
+    font-size: 3rem; /* Apply the same font size as the <h1> tag */
+    margin-bottom: 20px;
+  }
   
   #word {
     font-size: 3rem;
