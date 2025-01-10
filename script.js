@@ -64,7 +64,7 @@ function showWord() {
       });
     });
 
-  // Hide the "Show Word" button
+  // Hide the "Generate Credentials" button
   document.getElementById('show-word-button').style.display = 'none';
 
   // Show the word container
