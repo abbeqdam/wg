@@ -1,36 +1,52 @@
 /* Add your CSS styling here */
 body {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
-  }
-  
-  #word-container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  #word-container p { /* Style the <p> tag within #word-container */
-    font-size: 3rem; /* Apply the same font size as the <h1> tag */
-    margin-bottom: 20px;
-  }
-  
-  #word {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+#word-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#word-container label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: block; /* Makes the labels stack vertically */
+  margin-bottom: 5px;
+}
+
+#word-container p {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+#word-container a {
+  color: #007bff; /* Example link color */
+  text-decoration: none;
+  display: block; /* Makes the link stack vertically */
+  margin-top: 20px;
+}
+
+/* Style for the hidden password */
+#word-container .password {
+  user-select: none; /* Prevent text selection */
+  -webkit-user-select: none; /* For Safari */
+}
+
+#word-container .password::before {
+  content: "********"; /* Display asterisks instead of the text */
+}
+
+/* Show the password on click and hold */
+#word-container .password:active::before {
+  content: none; /* Hide the asterisks */
+}
