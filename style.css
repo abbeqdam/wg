@@ -17,36 +17,71 @@ body {
   text-align: center;
 }
 
-#word-container label {
-  font-size: 1.2rem;
-  font-weight: bold;
-  display: block; /* Makes the labels stack vertically */
-  margin-bottom: 5px;
-}
-
-#word-container p {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
 #word-container a {
-  color: #007bff; /* Example link color */
+  color: #007bff; 
   text-decoration: none;
-  display: block; /* Makes the link stack vertically */
+  display: block; 
   margin-top: 20px;
+  font-family: 'Arial', sans-serif; 
+  font-weight: bold; 
+  font-size: 1.2rem;
 }
 
 /* Style for the hidden password */
 #word-container .password {
-  user-select: none; /* Prevent text selection */
-  -webkit-user-select: none; /* For Safari */
+  user-select: none; 
+  -webkit-user-select: none; 
 }
 
 #word-container .password::before {
-  content: "********"; /* Display asterisks instead of the text */
+  content: "********"; 
 }
 
 /* Show the password on click and hold */
 #word-container .password:active::before {
-  content: none; /* Hide the asterisks */
+  content: "12345678"; 
+}
+
+#word-container .input-group {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  gap: 10px; 
+  margin-bottom: 15px; 
+}
+
+#word-container label {
+  font-family: 'Arial', sans-serif; 
+  font-size: 1.2rem;
+  font-weight: bold;
+  white-space: nowrap; 
+  margin-right: 10px; 
+}
+
+#word-container p {
+  font-family: 'Courier New', monospace;
+  font-size: 1.5rem;
+  margin: 0; 
+}
+
+#word-container button {
+  font-size: 1rem;
+  padding: 5px 10px; 
+}
+
+#show-word-button {
+  background-color: #007bff; 
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+#show-word-button i {
+  font-size: 1.5rem; 
 }
