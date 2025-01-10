@@ -1,9 +1,9 @@
 let shownWords = [];
 
 // Load shown words from JSONbin.io
-fetch(`https://api.jsonbin.io/v3/b/678132fce41b4d34e4754804/latest`, { // Your bin ID
+fetch(`https://api.jsonbin.io/v3/b/678134ccacd3cb34a8c984d4/latest`, { // Your new bin ID
   headers: {
-    'X-Master-Key': '$2a$10$w4f4jzXPp/NZPHWxhAv9z.3hKj1vP1IUAwDODZK0./hdMGNV.ybwe', // Your API key
+    'X-Master-Key': API_KEY, // Your API key (from Netlify environment variables)
   },
 })
   .then(response => {

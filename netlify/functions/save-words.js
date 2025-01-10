@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const API_KEY = '$2a$10$w4f4jzXPp/NZPHWxhAv9z.3hKj1vP1IUAwDODZK0./hdMGNV.ybwe'; // Your JSONbin.io API key
-const BIN_ID = '678132fce41b4d34e4754804'; // Your bin ID
+const BIN_ID = '678134ccacd3cb34a8c984d4'; // Your bin ID
 
 exports.handler = async function (event, context) {
   try {
