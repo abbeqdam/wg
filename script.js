@@ -1,4 +1,4 @@
-let shownWords =;
+let shownWords = [];
 
 // Load shown words from the proxy function
 fetch('/.netlify/functions/get-shown-words')
@@ -9,7 +9,7 @@ fetch('/.netlify/functions/get-shown-words')
     return response.json();
   })
   .then(data => {
-    shownWords = data.record.words ||;
+    shownWords = data.record.words || [];
   })
   .catch(error => {
     console.error('Error loading shown words:', error);
@@ -42,7 +42,7 @@ function showWord() {
 
       // Set the password text content
       const passwordElement = document.querySelector('.password');
-      passwordElement.textContent = "";
+      passwordElement.textContent = "12345678";
 
       // Add the word to shownWords
       shownWords.push(selectedWord);
