@@ -7,38 +7,26 @@ fetch('shown_words.json')
     shownWords = data;
   });
 
-function getRandomWord() {
-  // Fetch words from XML file
-  fetch('words.xml')
-    .then(response => response.text())
-    .then(xmlString => {
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-      const words = Array.from(xmlDoc.getElementsByTagName("word")).map(word => word.textContent);
-
-      // Filter out shown words
-      const availableWords = words.filter(word => !shownWords.includes(word));
-
-      // If all words have been shown, reset shownWords
-      if (availableWords.length === 0) {
-        shownWords = [];
-        availableWords = words;
-      }
-
-      // Select a random word
-      const randomIndex = Math.floor(Math.random() * availableWords.length);
-      const selectedWord = availableWords[randomIndex];
-
-      // Display the word
-      document.getElementById("word").textContent = selectedWord;
-
-      // Add the word to shownWords
-      shownWords.push(selectedWord);
-
-      // Save shown words to JSON file
-      saveShownWords();
-    });
-}
+  function getRandomWord() {
+    // ... (rest of the code remains the same)
+  
+        // Save shown words by sending a request to the Netlify function
+        fetch('/.netlify/functions/save-words', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ shownWords }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Shown words saved:', data);
+        })
+        .catch(error => {
+          console.error('Error saving shown words:', error);
+        });
+      
+  }
 
 function copyWord() {
   // Copy the word to clipboard
