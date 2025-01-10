@@ -9,7 +9,7 @@ fetch('/.netlify/functions/get-shown-words')
     return response.json();
   })
   .then(data => {
-    shownWords = data.record.words || [];
+    shownWords = data.records[0].fields.word || [];
   })
   .catch(error => {
     console.error('Error loading shown words:', error);
