@@ -1,39 +1,40 @@
 let shownWords = [];
 
-// Load shown words from JSON file (Corrected)
+// Load shown words from JSON file
 fetch('shown_words.json')
-  .then(response => {
+  .then((response) => {
     if (!response.ok) {
       // If the file doesn't exist, start with an empty array
-      return []; 
+      return [];
     }
     return response.json();
   })
-  .then(data => {
+  .then((data) => {
     shownWords = data;
     getRandomWord(); // Call getRandomWord after loading shownWords
   })
-  .catch(error => {
+  .catch((error) => {
     console.error('Error loading shown words:', error);
     getRandomWord(); // Call getRandomWord even if there's an error
   });
 
-
 function getRandomWord() {
   // Fetch words from XML file
   fetch('words.xml')
-    .then(response => response.text())
-    .then(xmlString => {
+    .then((response) => response.text())
+    .then((xmlString) => {
       const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-      const words = Array.from(xmlDoc.getElementsByTagName("word")).map(word => word.textContent);
+      const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+      const words = Array.from(xmlDoc.getElementsByTagName('word')).map(
+        (word) => word.textContent
+      );
 
       // Filter out shown words
-      const availableWords = words.filter(word => !shownWords.includes(word));
+      const availableWords = words.filter((word) => !shownWords.includes(word));
 
       // If all words have been shown, display "No more words"
       if (availableWords.length === 0) {
-        document.getElementById("word").textContent = "No more words!";
+        document.getElementById('word').textContent = 'No more words!';
         return; // Exit the function
       }
 
@@ -42,7 +43,7 @@ function getRandomWord() {
       const selectedWord = availableWords[randomIndex];
 
       // Display the word
-      document.getElementById("word").textContent = selectedWord;
+      document.getElementById('word').textContent = selectedWord;
 
       // Add the word to shownWords
       shownWords.push(selectedWord);
@@ -53,20 +54,20 @@ function getRandomWord() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ shownWords }),
+        body: JSON.stringify({shownWords}),
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Shown words saved:', data);
-      })
-      .catch(error => {
-        console.error('Error saving shown words:', error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Shown words saved:', data);
+        })
+        .catch((error) => {
+          console.error('Error saving shown words:', error);
+        });
     });
 }
 
 function copyWord() {
   // Copy the word to clipboard
-  const word = document.getElementById("word").textContent;
+  const word = document.getElementById('word').textContent;
   navigator.clipboard.writeText(word);
 }
